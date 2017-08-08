@@ -21,6 +21,7 @@ import java.util.UUID;
 
 import org.craftercms.commons.mongo.Document;
 import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
 
 /**
  * Context Object.
@@ -28,7 +29,7 @@ import org.jongo.marshall.jackson.oid.Id;
 @Document(collectionName = "socialContext")
 public class SocialContext {
 
-    @Id
+    @MongoId
     private String id;
     private String contextName;
 

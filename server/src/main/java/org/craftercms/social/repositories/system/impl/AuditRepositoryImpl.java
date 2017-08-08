@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.ListUtils;
 import org.craftercms.commons.collections.IterableUtils;
 import org.craftercms.commons.i10n.I10nLogger;
 import org.craftercms.commons.mongo.AbstractJongoRepository;
@@ -95,7 +96,7 @@ public class AuditRepositoryImpl extends AbstractJongoRepository<AuditLog> imple
             logger.debug("NotificationQ\n\r {} {} {} {} {} {} {}",querypt1, idParts[1], idParts[0],
                 Arrays.asList(unwantedStatus.split(",")),profilesToExclude, from, to);
             logger.debug("NotificationQ2\n\r {}",querypt2);
-            final List<HashMap> preResults = agregation.and(querypt2).as(HashMap.class);
+            final List<HashMap> preResults = IterableUtils.toList(agregation.and(querypt2).as(HashMap.class));
             logger.debug("PreResults size {}",preResults.size());
             for (HashMap preResult : preResults) {
                 List<HashMap> ugcList = (List<HashMap>)preResult.get("ugcList");

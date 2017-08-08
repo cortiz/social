@@ -5,13 +5,14 @@ import java.util.Set;
 import org.bson.types.ObjectId;
 import org.craftercms.commons.mongo.Document;
 import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
 
 /**
  */
 @Document(collectionName = "securityActions")
 public class SocialSecurityAction {
 
-    @Id
+    @MongoId
     private ObjectId id;
 
     private String actionName;

@@ -19,15 +19,21 @@ package org.craftercms.social.management.web.controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bson.types.ObjectId;
 import org.craftercms.commons.http.HttpUtils;
 import org.craftercms.profile.api.Profile;
 import org.craftercms.security.authentication.Authentication;
 import org.craftercms.security.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Map;
 
 /**
  * Controller for the main view.
@@ -44,20 +50,17 @@ public class MainController {
     public static final String MODEL_SOCIAL_APP_URL = "socialAppUrl";
     private static final String IS_LOGGED_USER_SUPERADMIN = "isSuperAdmin";
 
+    @Value("${social.management.rootUrl}")
     private String socialAppRootUrl;
+    @Value("${social.management.name}")
     private String socialAppName;
-
     public void setSocialAppRootUrl(String socialAppRootUrl) {
         this.socialAppRootUrl = socialAppRootUrl;
     }
 
-    @Required
-    public void setSocialAppName(String socialAppName) {
-        this.socialAppName = socialAppName;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView viewMain(HttpServletRequest request) {
+    public ModelAndView viewMain(Map<String, Object> model, HttpServletRequest request) {
         StringBuilder socialAppUrl;
 
         if (StringUtils.isNotEmpty(socialAppRootUrl)) {
@@ -66,11 +69,16 @@ public class MainController {
             socialAppUrl = HttpUtils.getBaseRequestUrl(request, false).append("/").append(socialAppName);
         }
 
-        ModelAndView mav = new ModelAndView(VIEW_MAIN);
         Profile loggedUser=getLoggedInUser(request);
 
+        ModelAndView mav;
+         mav = new ModelAndView(VIEW_MAIN);
+
         mav.addObject(MODEL_LOGGED_IN_USER, loggedUser);
-        mav.addObject(IS_LOGGED_USER_SUPERADMIN, isSuperAdmin(loggedUser));
+        mav.addObject("requestContext", request);
+        if (loggedUser!=null) {
+            mav.addObject(IS_LOGGED_USER_SUPERADMIN, isSuperAdmin(loggedUser));
+        }
         mav.addObject(MODEL_SOCIAL_APP_URL, socialAppUrl.toString());
 
         return mav;
@@ -85,7 +93,7 @@ public class MainController {
         if (auth != null) {
             return auth.getProfile();
         } else {
-            return null;
+         return null;
         }
     }
 

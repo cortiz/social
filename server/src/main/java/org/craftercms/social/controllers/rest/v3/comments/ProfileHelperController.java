@@ -41,11 +41,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import com.wordnik.swagger.annotations.Api;
 
 @Controller
 @RequestMapping("/api/3/profile")
-@Api(value = "Comment Services", basePath = "/api/3/profile", description = "Comments services")
 public class ProfileHelperController {
 
     public static final String AVATAR = "avatar";
@@ -54,7 +52,7 @@ public class ProfileHelperController {
 
     @RequestMapping(value = "/avatar/{profileId}", method = RequestMethod.POST)
     @ResponseBody
-    public Profile getProfileAvatar(MultipartHttpServletRequest request, HttpServletResponse response,
+    public Profile setProfileAvatar(MultipartHttpServletRequest request, HttpServletResponse response,
                                     @PathVariable("profileId") String profileId) throws IOException,
         ProfileException {
         final Profile profile = SocialSecurityUtils.getCurrentProfile();

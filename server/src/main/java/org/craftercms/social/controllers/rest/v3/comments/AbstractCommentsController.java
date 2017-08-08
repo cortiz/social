@@ -3,7 +3,6 @@ package org.craftercms.social.controllers.rest.v3.comments;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wordnik.swagger.annotations.Api;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/api/3/comments")
-@Api(value = "Comment Services", basePath = "/api/3/comments", description = "Comments services")
 public class AbstractCommentsController<T extends SocialUgc> {
 
     @Autowired

@@ -6,13 +6,13 @@
     <head>
         <@components.head "Login"/>
         <!-- Custom styles for this template -->
-        <link href="<@spring.url '/resources/css/login.css'/>" rel="stylesheet"/>
+        <link href="<@spring.url '/css/login.css'/>" rel="stylesheet"/>
     </head>
 
     <body>
         <div class="container">
             <form class="form-signin" role="form" action="<@spring.url '/crafter-security-login'/>" method="post">
-                <img class="logo" src="<@spring.url '/resources/image/logo.png'/>">
+                <img class="logo" src="<@spring.url '/image/logo.png'/>">
                 <input name="username" type="text" class="form-control" placeholder="Username" autofocus="autofocus">
                 <input name="password" type="password" class="form-control" placeholder="Password">
                 <#if RequestParameters.logout??>

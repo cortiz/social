@@ -4,6 +4,7 @@ import org.craftercms.commons.audit.AuditModel;
 import org.craftercms.commons.mongo.Document;
 import org.craftercms.social.domain.UGC;
 import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
 
 /**
  *
@@ -21,7 +22,7 @@ public class AuditLog extends AuditModel {
     }
 
     @Override
-    @Id
+    @MongoId
     public String getId() {
         return super.getId();
     }

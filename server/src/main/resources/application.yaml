@@ -1,0 +1,111 @@
+crafter:
+    profile:
+        rest:
+            client:
+                accessToken:
+                    id: 2ba3ac10-c43e-11e3-9c1a-0800200c9a66
+                url:
+                    base: http://localhost:8080/profile
+social:
+
+    folderPath: .
+    overrideLocation: file*:${social.folderPath}/social-services-context.xml
+
+    server:
+        port: 8667
+        contextPath:
+        log:
+          dir: ${social.folderPath}/logs
+          name: social.log
+          accesslog:
+                enable: false
+
+    mongodb:
+        connection:
+            autoConnectRetry: true
+            connectTimeout: 1000
+            connectionStr: localhost:27017
+            connectionsPerHost: 200
+            db: craftersocial
+            dbPassword: ''
+            dbUser: ''
+            maxWaitTime: 1500
+            newConnectionStr: mongodb://localhost:27020/craftersocial?readPreference=primary&maxPoolSize=150&minPoolSize=50&maxIdleTimeMS=1000&waitQueueMultiple=200&waitQueueTimeoutMS=1000&w=1&journal=true
+            readPreference: 1
+            scriptRunner:
+                clientPath: /usr/local/bin/mongo
+                withClient: false
+            socketKeepAlive: true
+            threadsAllowedToBlockForConnectionMultiplier: 200
+            writeConcern: JOURNALED
+        scripts:
+            paths: classpath:/crafter/social/
+            runOnInit: true
+    notification:
+        dailyCron: 0 0 0 * * ?
+        disable: false
+        instantCron: 0 */2 * * * ?
+        instantInterval: 120000
+        startDelay: 60
+        weeklyCron: 0 0 0 ? * SUN
+    system:
+        cors:
+            accessControlAllowCredentials: false
+            accessControlAllowHeaders: x-requested-with
+            accessControlAllowMethods: POST, GET, PUT, DELETE
+            accessControlAllowOrigin: '*'
+            accessControlMaxAge: 3600
+            disableCORS: false
+        defaultLocale: EN
+        emailConfig:
+            cache:
+                maxElementsInMemory: 250
+                tti: 180000
+                ttl: 360000
+        ignoreAnonymousFlagRoles: SOCIAL_ADMIN,SOCIAL_SUPERADMIN,SOCIAL_MODERATOR
+        profileAgg:
+            attributesToReturn: displayName,avatarLink,socialContexts,notificationLocale,autoWatch,defaultFrequency,isAlwaysAnonymous
+            cache:
+                maxElementsInMemory: 250
+                tti: 1800
+                ttl: 3600
+        tenantConfig:
+            cache:
+                maxElementsInMemory: 250
+                tti: 180000
+        tentanConfig:
+            cache:
+                ttl: 360000
+        ugcClass: org.craftercms.social.repositories.social.SocialUgcFactory
+    ugc:
+        arraySortFields: flags,votesDown,votesUp,attachments,ancestors
+        invalidQueryKeys: 'contextId:|$where:'
+        virusScanner: org.craftercms.virusscanner.impl.NullVirusScannerImpl
+        hiddenUgcStatus: SPAM,TRASH
+    web:
+        defaultSortOrder: ASC
+        mapping:
+            dateFormat: yyyy-MM-dd'T'HH:mm'Z'
+        maxUpload: 10485760
+        mimeFile: classpath:/mime.types
+        system:
+            throwStacktrace: false
+org:
+    craftercms:
+        commons:
+            audit:
+                auditScytheCronExp: 0 0 0 * *  ?
+                maxAuditAllowedDays: 365
+
+
+# Spring Boot Properties
+
+server:
+  port: ${social.server.port}
+  context-path: ${social.server.contextPath}
+  undertow:
+    accesslog:
+      enabled: ${social.server.log.accesslog.enable}
+      dir: ${social.server.log.dir}
+logging:
+  file: ${social.server.log.dir}/${social.server.log.name}

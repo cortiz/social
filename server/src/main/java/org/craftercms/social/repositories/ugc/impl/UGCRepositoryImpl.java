@@ -349,6 +349,10 @@ public class UGCRepositoryImpl<T extends UGC> extends SocialJongoRepository impl
         return ugcList;
     }
 
+    protected List<T> toUgcList(final Iterable<BaseTreeUgc> as) {
+        return toUgcList(IterableUtils.toList(as));
+    }
+
 
     public void setTenantConfigurationServiceImpl(TenantConfigurationService tenantConfigurationService) {
         this.tenantConfigurationService=tenantConfigurationService;

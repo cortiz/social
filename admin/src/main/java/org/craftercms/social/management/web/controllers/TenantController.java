@@ -47,8 +47,7 @@ public class TenantController {
     private TenantService tenantService;
     private List<String> allTenants;
 
-    @Required
-    public void setTenantService(TenantService tenantService) {
+    public TenantController(TenantService tenantService) {
         this.tenantService = tenantService;
     }
 

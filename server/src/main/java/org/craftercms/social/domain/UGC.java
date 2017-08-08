@@ -29,7 +29,7 @@ import org.craftercms.commons.jackson.mvc.annotations.InjectValue;
 import org.craftercms.commons.mongo.Document;
 import org.craftercms.commons.mongo.FileInfo;
 import org.craftercms.profile.api.Profile;
-import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
 import org.springframework.beans.BeanUtils;
 
 @SuppressWarnings("unchecked")
@@ -38,7 +38,7 @@ public class UGC<T extends UGC> {
 
     public static final String COLLECTION_NAME = "ugc";
 
-    @Id
+    @MongoId
     private ObjectId id;
     private ArrayDeque<ObjectId> ancestors;
     private String targetId;

@@ -7,10 +7,10 @@
 <title>${title}</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="<@spring.url '/resources/image/favicon.ico'/>">
+<link rel="shortcut icon" href="<@spring.url '/image/favicon.ico'/>">
 
 <!-- Bootstrap -->
-<link href="<@spring.url '/resources/css/bootstrap.min.css'/>" rel="stylesheet">
+<link href="<@spring.url '/css/bootstrap.min.css'/>" rel="stylesheet">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,13 +67,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
-<script src="<@spring.url '/resources/js/bootstrap.min.js'/>"></script>
-<script src="<@spring.url '/resources/js/ui-bootstrap-tpls-0.11.0.min.js'/>"></script>
-<script src="<@spring.url '/resources/js/bootstrap-growl.min.js'/>"></script>
-<script src="<@spring.url '/resources/js/jquery.cookie.js'/>"></script>
-<script src="<@spring.url '/resources/js/ng-ckeditor.min.js'/>"></script>
+<script src="<@spring.url '/js/bootstrap.min.js'/>"></script>
+<script src="<@spring.url '/js/ui-bootstrap-tpls-0.11.0.min.js'/>"></script>
+<script src="<@spring.url '/js/bootstrap-growl.min.js'/>"></script>
+<script src="<@spring.url '/js/jquery.cookie.js'/>"></script>
+<script src="<@spring.url '/js/ng-ckeditor.min.js'/>"></script>
 
-<script src="<@spring.url '/resources/js/app.js'/>"></script>
+<script src="<@spring.url '/js/app.js'/>"></script>
 <script type="text/javascript">
     var contextPath = "${requestContext.contextPath}";
     var socialAppUrl = "${socialAppUrl}";

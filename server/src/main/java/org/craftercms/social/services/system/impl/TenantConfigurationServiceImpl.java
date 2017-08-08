@@ -77,22 +77,6 @@ public class TenantConfigurationServiceImpl implements TenantConfigurationServic
     }
 
     public void loadDefaults() throws MongoDataException, SocialException {
-        systemDefaults = new Properties();
-        for (Resource resource : defaultLocations) {
-            if (resource.exists() && resource.isReadable()) {
-                try {
-                    final InputStream in = resource.getInputStream();
-                    systemDefaults.load(in);
-                    in.close();
-                } catch (IOException ex) {
-                    log.error("Unable to read file " + resource.getFilename(), ex);
-                }
-            }
-        }
-        if (systemDefaults.isEmpty()) {
-            throw new IllegalStateException("System default properties are empty");
-        }
-
         final List<Map<String, Object>> toCache = getAllPreferences();
         for (Map<String, Object> contextPref : toCache) {
             tenantConfigCache.put(new Element(contextPref.get("contextId"), contextPref));
