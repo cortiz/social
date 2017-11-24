@@ -20,8 +20,8 @@ package org.craftercms.social.domain.social.system;
 import java.util.UUID;
 
 import org.craftercms.commons.mongo.Document;
-import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.MongoId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Context Object.
@@ -30,6 +30,7 @@ import org.jongo.marshall.jackson.oid.MongoId;
 public class SocialContext {
 
     @MongoId
+    @JsonProperty("_id")
     private String id;
     private String contextName;
 

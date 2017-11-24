@@ -2,19 +2,15 @@ package org.craftercms.social;
 
 import org.craftercms.commons.http.RequestContextBindingFilter;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 @SpringBootApplication
+@EnableAutoConfiguration(exclude = { WebMvcAutoConfiguration.class })
 @ImportResource({"classpath:/spring/root-context.xml","classpath:/spring/web-context.xml"})
 public class SocialApplicationMain {
 

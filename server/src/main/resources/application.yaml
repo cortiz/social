@@ -5,7 +5,7 @@ crafter:
                 accessToken:
                     id: 2ba3ac10-c43e-11e3-9c1a-0800200c9a66
                 url:
-                    base: http://localhost:8080/profile
+                    base: http://localhost:8080/crafter-profile
 social:
 
     folderPath: .
@@ -13,7 +13,7 @@ social:
 
     server:
         port: 8667
-        contextPath:
+        contextPath: /crafter-social/
         log:
           dir: ${social.folderPath}/logs
           name: social.log
