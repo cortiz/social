@@ -31,7 +31,7 @@ social:
         overrideLocation: file*:${social.management.folderPath}/social-services-context.xml
         server:
               port: 8668
-              contextPath: /crafter-social-admin/
+              contextPath:
               log:
                 dir: ${social.management.folderPath}/logs
                 name: social.log

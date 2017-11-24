@@ -13,7 +13,7 @@ social:
 
     server:
         port: 8667
-        contextPath: /crafter-social/
+        contextPath:
         log:
           dir: ${social.folderPath}/logs
           name: social.log
