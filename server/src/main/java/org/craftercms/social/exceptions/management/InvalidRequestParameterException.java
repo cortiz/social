@@ -1,4 +1,4 @@
-package org.craftercms.social.management.exceptions;
+package org.craftercms.social.exceptions.management;
 
 /**
  * Thrown when a request parameter is invalid.

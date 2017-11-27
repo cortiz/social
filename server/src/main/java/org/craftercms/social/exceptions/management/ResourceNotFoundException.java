@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.craftercms.social.management.exceptions;
+package org.craftercms.social.exceptions.management;
 
 /**
  * {@link RuntimeException} thrown when a resource (like a profile or tenant) couldn't be found

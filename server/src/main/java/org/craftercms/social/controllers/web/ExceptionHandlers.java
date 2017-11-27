@@ -1,11 +1,11 @@
-package org.craftercms.social.management.web.controllers;
+package org.craftercms.social.controllers.web;
 
 import java.util.Collections;
 
 import org.craftercms.profile.api.exceptions.ProfileException;
 import org.craftercms.profile.exceptions.ProfileRestServiceException;
-import org.craftercms.social.management.exceptions.InvalidRequestParameterException;
-import org.craftercms.social.management.exceptions.ResourceNotFoundException;
+import org.craftercms.social.exceptions.management.InvalidRequestParameterException;
+import org.craftercms.social.exceptions.management.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;

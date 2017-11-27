@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.craftercms.social.management.web.controllers;
+package org.craftercms.social.controllers.web;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -26,11 +26,9 @@ import org.craftercms.profile.api.SortOrder;
 import org.craftercms.profile.api.exceptions.ProfileException;
 import org.craftercms.profile.api.services.ProfileService;
 import org.craftercms.security.utils.SecurityUtils;
-import org.craftercms.social.management.exceptions.InvalidRequestParameterException;
-import org.craftercms.social.management.exceptions.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.craftercms.social.exceptions.management.InvalidRequestParameterException;
+import org.craftercms.social.exceptions.management.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

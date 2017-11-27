@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.craftercms.social.management.web.controllers;
+package org.craftercms.social.controllers.web;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -50,24 +50,11 @@ public class MainController {
     public static final String MODEL_SOCIAL_APP_URL = "socialAppUrl";
     private static final String IS_LOGGED_USER_SUPERADMIN = "isSuperAdmin";
 
-    @Value("${social.management.rootUrl}")
-    private String socialAppRootUrl;
-    @Value("${social.management.name}")
-    private String socialAppName;
-    public void setSocialAppRootUrl(String socialAppRootUrl) {
-        this.socialAppRootUrl = socialAppRootUrl;
-    }
-
-
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView viewMain(Map<String, Object> model, HttpServletRequest request) {
         StringBuilder socialAppUrl;
 
-        if (StringUtils.isNotEmpty(socialAppRootUrl)) {
-            socialAppUrl = new StringBuilder(socialAppRootUrl).append("/").append(socialAppName);
-        } else {
-            socialAppUrl = HttpUtils.getBaseRequestUrl(request, false).append("/").append(socialAppName);
-        }
+        socialAppUrl = HttpUtils.getBaseRequestUrl(request, false).append("/");
 
         Profile loggedUser=getLoggedInUser(request);
 

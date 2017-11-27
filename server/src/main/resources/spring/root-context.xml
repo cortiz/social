@@ -5,9 +5,14 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <import resource="classpath:/crafter/security/rest-security-context.xml"/>
+    <bean id="crafter.properties" class="org.springframework.beans.factory.config.YamlPropertiesFactoryBean">
+        <property name="resources" value="classpath:application.yaml"/>
+    </bean>
+
     <context:annotation-config/>
-    <context:property-placeholder file-encoding="UTF-8" />
+    <context:property-placeholder properties-ref="crafter.properties"/>
+
+    <import resource="classpath:/crafter/security/security-context.xml"/>
 
     <import resource="mongo-config.xml"/>
     <import resource="moderation-context.xml"/>
@@ -45,7 +50,7 @@
     </bean>
 
     <bean id="social.ugc.virusScanner"
-          class="${social.ugc.virusScanner}"/>
+          class="org.craftercms.virusscanner.impl.NullVirusScannerImpl"/>
 
     <bean class="org.craftercms.social.services.social.impl.SocialServicesImpl" id="social.ugc.socialServices">
         <property name="ugcRepository" ref="social.repository.ugcRepository"/>
@@ -67,7 +72,7 @@
         </property>
     </bean>
 
-    <bean class="${social.system.ugcClass}" id="social.ugc.factory"/>
+    <bean class="org.craftercms.social.repositories.social.SocialUgcFactory" id="social.ugc.factory"/>
 
     <bean class="org.craftercms.social.util.profile.ProfileAggregatorImpl" id="social.profileAggregator">
         <property name="profileService" ref="crafter.profileServiceRestClient"/>
@@ -150,14 +155,12 @@
         <property name="contextPreferences" ref="social.services.system.contextPreferences"/>
     </bean>
 
-
     <bean id="social.support.tenantConfigCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
         <property name="name" value="social.tenatConfigCache"/>
         <property name="timeToLiveSeconds" value="${social.system.emailConfig.cache.ttl}"/>
         <property name="timeToIdleSeconds" value="${social.system.emailConfig.cache.tti}"/>
         <property name="maxEntriesLocalHeap" value="${social.system.emailConfig.cache.maxElementsInMemory}"/>
     </bean>
-
 
     <bean class="org.craftercms.social.services.system.impl.TenantConfigurationServiceImpl"
           id="social.services.system.tenantConfiguration" init-method="loadDefaults">
@@ -166,8 +169,6 @@
         <property name="contextPreferencesRepository" ref="social.repository.contextPreferencesRepository"/>
 
     </bean>
-
-
 
     <import resource="scheduler-context.xml"/>
     <import resource="extensions-context.xml"/>
