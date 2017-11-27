@@ -285,7 +285,6 @@
     </repositories>
 
     <build>
-        <finalName>social</finalName>
         <testResources>
             <testResource>
                 <directory>src/test/resources</directory>
@@ -371,6 +370,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
+                    <warName>${project.artifactId}</warName>
                     <attachClasses>true</attachClasses>
                     <archive>
                         <manifest>
