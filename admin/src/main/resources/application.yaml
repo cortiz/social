@@ -21,11 +21,11 @@ crafter:
                 accessToken:
                     id: 2ba3ac10-c43e-11e3-9c1a-0800200c9a66
                 url:
-                    base: http://localhost:8080/crafter-profile
+                    base: http://127.0.0.1:8080/crafter-profile
 social:
     management:
-        name: crafter-social
-        rootUrl: "http://localhost"
+        name:
+        rootUrl: http://127.0.0.1:8667
         date-format: MM/dd/yyyy HH:mm:ss
         folderPath: .
         overrideLocation: file*:${social.management.folderPath}/social-services-context.xml

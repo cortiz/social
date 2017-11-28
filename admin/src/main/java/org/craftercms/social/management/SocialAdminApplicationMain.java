@@ -55,7 +55,8 @@ public class SocialAdminApplicationMain extends WebMvcConfigurerAdapter {
             new ClassPathResource("resources/css/"),
             new ClassPathResource("resources/js/"),
             new ClassPathResource("resources/fonts/"),
-            new ClassPathResource("resources/image/")
+            new ClassPathResource("resources/image/"),
+            new ClassPathResource("resources/")
         );
         resourceHttpRequestHandler.setLocations(resources);
         return resourceHttpRequestHandler;
@@ -72,6 +73,7 @@ public class SocialAdminApplicationMain extends WebMvcConfigurerAdapter {
         urlProperties.put("/js/**", resourceHttpRequestHandler);
         urlProperties.put("/fonts/**", resourceHttpRequestHandler);
         urlProperties.put("/image/**", resourceHttpRequestHandler);
+        urlProperties.put("/resources/**", resourceHttpRequestHandler);
         urlProperties.put("/**", urlFilenameViewController);
         mapping.setMappings(urlProperties);
         return mapping;

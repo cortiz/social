@@ -242,13 +242,14 @@ function findComment(comments, id) {
 }
 
 function getObject(url, $http) {
-    return $http.get(url,{cache:false}).then(function (result) {
+    return $http.get(url,{cache:false, withCredentials:true}).then(function (result) {
         return result.data;
     });
 }
 
 function postParams(url, params, $http) {
-    return $http.post(url, $.param(params), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(
+    return $http.post(url, $.param(params), {headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        withCredentials:true}).then(
         function (result) {
             return result.data;
         }
@@ -256,7 +257,8 @@ function postParams(url, params, $http) {
 }
 
 function putParams(url, params, $http) {
-    return $http.put(url, $.param(params), {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(
+    return $http.put(url, $.param(params), {headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        withCredentials:true}).then(
         function (result) {
             return result.data;
         }
@@ -264,7 +266,7 @@ function putParams(url, params, $http) {
 }
 
 function deleteObject(url, $http) {
-    return $http.delete(url).then(function (result) {
+    return $http.delete(url, {withCredentials:true}).then(function (result) {
         return result.data;
     });
 }

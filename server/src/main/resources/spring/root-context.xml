@@ -44,8 +44,7 @@
         <property name="disableCORS" value="${social.system.cors.disableCORS}"/>
     </bean>
 
-    <bean id="social.ugc.virusScanner"
-          class="${social.ugc.virusScanner}"/>
+    <bean id="social.ugc.virusScanner" class="org.craftercms.virusscanner.impl.NullVirusScannerImpl"/>
 
     <bean class="org.craftercms.social.services.social.impl.SocialServicesImpl" id="social.ugc.socialServices">
         <property name="ugcRepository" ref="social.repository.ugcRepository"/>
@@ -67,7 +66,7 @@
         </property>
     </bean>
 
-    <bean class="${social.system.ugcClass}" id="social.ugc.factory"/>
+    <bean class="org.craftercms.social.repositories.social.SocialUgcFactory" id="social.ugc.factory"/>
 
     <bean class="org.craftercms.social.util.profile.ProfileAggregatorImpl" id="social.profileAggregator">
         <property name="profileService" ref="crafter.profileServiceRestClient"/>

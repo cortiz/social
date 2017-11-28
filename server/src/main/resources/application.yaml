@@ -5,7 +5,7 @@ crafter:
                 accessToken:
                     id: 2ba3ac10-c43e-11e3-9c1a-0800200c9a66
                 url:
-                    base: http://localhost:8080/crafter-profile
+                    base: http://127.0.0.1:8080/crafter-profile
 social:
 
     folderPath: .
@@ -50,10 +50,10 @@ social:
         weeklyCron: 0 0 0 ? * SUN
     system:
         cors:
-            accessControlAllowCredentials: false
+            accessControlAllowCredentials: true
             accessControlAllowHeaders: x-requested-with
             accessControlAllowMethods: POST, GET, PUT, DELETE
-            accessControlAllowOrigin: '*'
+            accessControlAllowOrigin: http://127.0.0.1:8668
             accessControlMaxAge: 3600
             disableCORS: false
         defaultLocale: EN
@@ -76,11 +76,9 @@ social:
         tentanConfig:
             cache:
                 ttl: 360000
-        ugcClass: org.craftercms.social.repositories.social.SocialUgcFactory
     ugc:
         arraySortFields: flags,votesDown,votesUp,attachments,ancestors
         invalidQueryKeys: 'contextId:|$where:'
-        virusScanner: org.craftercms.virusscanner.impl.NullVirusScannerImpl
         hiddenUgcStatus: SPAM,TRASH
     web:
         defaultSortOrder: ASC
