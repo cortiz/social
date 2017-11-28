@@ -3,8 +3,8 @@ package org.craftercms.social.domain.audit;
 import org.craftercms.commons.audit.AuditModel;
 import org.craftercms.commons.mongo.Document;
 import org.craftercms.social.domain.UGC;
-import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.MongoId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
@@ -23,6 +23,7 @@ public class AuditLog extends AuditModel {
 
     @Override
     @MongoId
+    @JsonProperty("_id")
     public String getId() {
         return super.getId();
     }

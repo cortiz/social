@@ -3,6 +3,7 @@ package org.craftercms.social.controllers.rest.v3.comments;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wordnik.swagger.annotations.Api;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/api/3/comments")
+@Api(value = "Comment Services", basePath = "/api/3/comments", description = "Comments services")
 public class AbstractCommentsController<T extends SocialUgc> {
 
     @Autowired
@@ -45,9 +47,9 @@ public class AbstractCommentsController<T extends SocialUgc> {
     /**
      * Parse the json String to a map.
      *
-     * @param attributes Json String to be parse.
+     * @param attributes Json String to parse.
      * @return A map with the values of the JSON String
-     * @throws org.springframework.web.bind.MissingServletRequestParameterException If String can't be parse.
+     * @throws org.springframework.web.bind.MissingServletRequestParameterException If String can't be parsed.
      */
     protected Map<String, Object> parseAttributes(final String attributes) throws
 
@@ -74,15 +76,15 @@ public class AbstractCommentsController<T extends SocialUgc> {
     }
 
     /**
-     * Current's user id.
+     * Current user id.
      *
-     * @return Current User Id,Empty if a user is not logged.
+     * @return Current User Id, Empty if a user is not logged.
      */
     protected String userId() {
         ObjectId id = getCurrentProfile().getId();
         if (id == null) {
             // This is if user is not there or anonymous.
-            throw new AuthenticationRequiredException("Missing or expire auth token");
+            throw new AuthenticationRequiredException("Missing or expired auth token");
         }
         return id.toString();
     }

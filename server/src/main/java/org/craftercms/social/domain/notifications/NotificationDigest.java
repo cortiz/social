@@ -20,14 +20,16 @@ package org.craftercms.social.domain.notifications;
 import java.util.List;
 
 import org.craftercms.social.domain.UGC;
-import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
  */
 public class NotificationDigest<T extends UGC> {
 
-    @Id
+    @MongoId
+    @JsonProperty("_id")
     private String actionType;
 
     private List<T> ugcForAction;

@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 
 
 /**
@@ -36,13 +37,14 @@ public class AttachmentsController<T extends SocialUgc> extends AbstractComments
 
     private Logger log = LoggerFactory.getLogger(AttachmentsController.class);
 
-    @Value("${social.web.mimeFile}")
+    @Value("${studio.social.web.mimeFile}")
     protected Resource mimeFile;
 
     @RequestMapping(value = "/{id}/attachments", method = RequestMethod.POST)
     @ResponseBody()
-    public FileInfo addAttachment( @NotBlank @PathVariable(value =
-        "id") final String id,
+    @ApiOperation(value = "Adds an attachment to the given UGC")
+    public FileInfo addAttachment(@ApiParam(value = "Id of the UGC", name = "id") @NotBlank @PathVariable(value =
+        "id") final String id, @ApiParam(value = "File to upload, Do notice that the server will enforce ")
     @RequestParam() MultipartFile attachment) throws SocialException, IOException {
         log.debug("Adding Attachment for UGC {} ", id);
         final FileInfo fileInfo =ugcService.addAttachment(id, context(), attachment.getInputStream(), attachment
@@ -96,16 +98,17 @@ public class AttachmentsController<T extends SocialUgc> extends AbstractComments
 
         T ugc = (T)ugcService.read(id, context());
         if (ugc == null) {
-            throw new UGCNotFound("Ugc with Id " + id + " does not Exists");
+            throw new UGCNotFound("Ugc with Id " + id + " does not Exist");
         }
         return ugc.getAttachments();
     }
 
     @RequestMapping(value = "/{id}/attachments/{attachmentId}", method = RequestMethod.GET)
     @ResponseBody()
-    public void readAttachment(
-            @NotBlank @PathVariable(value = "id") final String
-                                       id,  @NotBlank @PathVariable(value =
+    @ApiOperation(value = "Sends the attachment to the client", notes = "This will send the headers  content-type " +
+        "(based on extension), content-length, and content-disposition")
+    public void readAttachment(@ApiParam("Id of the UGC") @NotBlank @PathVariable(value = "id") final String
+                                       id, @ApiParam("Id of the attachment") @NotBlank @PathVariable(value =
         "attachmentId") final String attachmentId, final HttpServletResponse response) throws SocialException,
         IOException {
         log.debug("Reading Attachment for UGC {} with Id {}", id, attachmentId);

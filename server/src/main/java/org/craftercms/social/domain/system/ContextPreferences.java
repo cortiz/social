@@ -19,9 +19,9 @@ package org.craftercms.social.domain.system;
 
 import java.util.Map;
 
-import org.bson.types.ObjectId;
 import org.craftercms.commons.mongo.Document;
-import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
@@ -29,7 +29,8 @@ import org.jongo.marshall.jackson.oid.Id;
 @Document(collectionName = "preferences")
 public class ContextPreferences {
 
-    @Id
+    @MongoId
+    @JsonProperty("_id")
     private String contextId;
     private Map<String,Object> preferences;
 

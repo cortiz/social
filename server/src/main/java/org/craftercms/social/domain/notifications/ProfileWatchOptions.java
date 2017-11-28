@@ -17,14 +17,16 @@
 
 package org.craftercms.social.domain.notifications;
 
-import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
  */
 public class ProfileWatchOptions {
 
-    @Id
+    @MongoId
+    @JsonProperty("_id")
     private String profileId;
     private String frequency;
 

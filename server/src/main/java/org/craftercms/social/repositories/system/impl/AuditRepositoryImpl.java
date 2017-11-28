@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections4.ListUtils;
 import org.craftercms.commons.collections.IterableUtils;
 import org.craftercms.commons.i10n.I10nLogger;
 import org.craftercms.commons.mongo.AbstractJongoRepository;

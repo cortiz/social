@@ -28,7 +28,6 @@ import org.craftercms.social.repositories.TreeUGC;
 import org.craftercms.social.repositories.ugc.UGCRepository;
 import org.craftercms.social.repositories.ugc.support.BaseTreeUgc;
 import org.craftercms.social.services.system.TenantConfigurationService;
-import org.craftercms.social.services.system.impl.TenantConfigurationServiceImpl;
 import org.jongo.Aggregate;
 import org.jongo.Find;
 import org.jongo.ResultHandler;
@@ -81,7 +80,7 @@ public class UGCRepositoryImpl<T extends UGC> extends SocialJongoRepository impl
             aggregation.and(pt9, childrenCount);
             aggregation.and(pt10);
 
-            return toUgcList(aggregation.as(super.ugcFactory.getTreeClass()));
+            return toUgcList(IterableUtils.toList(aggregation.as(super.ugcFactory.getTreeClass())));
         } catch (Exception ex) {
             log.error("Unable to ", ex);
             throw new MongoDataException("Unable to find children of given UGC", ex);
@@ -113,7 +112,7 @@ public class UGCRepositoryImpl<T extends UGC> extends SocialJongoRepository impl
             for (String attributeName : attributesName) {
                 map.put("attributes." + attributeName, -1);
             }
-            checkCommandResult(getCollection().update(query, new ObjectId(ugcId), contextId).with(delete, map));
+            getCollection().update(query, new ObjectId(ugcId), contextId).with(delete, map);
         } catch (MongoException ex) {
             log.error("Unable to delete attribute " + attributesName + " for UGC " + ugcId + "of contextId " +
                 contextId, ex);
@@ -143,7 +142,7 @@ public class UGCRepositoryImpl<T extends UGC> extends SocialJongoRepository impl
             if (!ObjectId.isValid(ugcId)) {
                 throw new IllegalArgumentException("Given UGC Id is not valid");
             }
-            checkCommandResult(getCollection().update(query, new ObjectId(ugcId), contextId).with(update, attributes));
+            getCollection().update(query, new ObjectId(ugcId), contextId).with(update, attributes);
         } catch (MongoException ex) {
             log.error("Unable to delete attribute " + attributes + " for UGC " + ugcId + "of contextId " + contextId, ex);
             throw new MongoDataException("Unable to delete attribute of a ugc", ex);
@@ -347,10 +346,6 @@ public class UGCRepositoryImpl<T extends UGC> extends SocialJongoRepository impl
             ugcList.add((T)a.getUGC());
         }
         return ugcList;
-    }
-
-    protected List<T> toUgcList(final Iterable<BaseTreeUgc> as) {
-        return toUgcList(IterableUtils.toList(as));
     }
 
 

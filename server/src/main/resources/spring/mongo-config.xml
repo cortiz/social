@@ -5,44 +5,44 @@
 	   		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
     <!--<bean id="social.mongodb.optionsFactory" class="org.craftercms.commons.mongo.MongoClientOptionsFactory">-->
-        <!--<property name="autoConnectRetry" value="${social.mongodb.connection.autoConnectRetry}"/>-->
-        <!--<property name="connectionsPerHost" value="${social.mongodb.connection.connectionsPerHost}"/>-->
-        <!--<property name="maxAutoConnectRetryTime" value="${social.mongodb.connection.maxWaitTime}"/>-->
-        <!--<property name="socketKeepAlive" value="${social.mongodb.connection.socketKeepAlive}"/>-->
+        <!--<property name="autoConnectRetry" value="${studio.social.mongodb.connection.autoConnectRetry}"/>-->
+        <!--<property name="connectionsPerHost" value="${studio.social.mongodb.connection.connectionsPerHost}"/>-->
+        <!--<property name="maxAutoConnectRetryTime" value="${studio.social.mongodb.connection.maxWaitTime}"/>-->
+        <!--<property name="socketKeepAlive" value="${studio.social.mongodb.connection.socketKeepAlive}"/>-->
         <!--<property name="threadsAllowedToBlockForConnectionMultiplier"-->
-                  <!--value="${social.mongodb.connection.threadsAllowedToBlockForConnectionMultiplier}"/>-->
-        <!--<property name="connectTimeout" value="${social.mongodb.connection.connectTimeout}"/>-->
-        <!--<property name="writeConcern" value="${social.mongodb.connection.writeConcern}"/>-->
-        <!--<property name="readPreference" value="${social.mongodb.connection.readPreference}"/>-->
+                  <!--value="${studio.social.mongodb.connection.threadsAllowedToBlockForConnectionMultiplier}"/>-->
+        <!--<property name="connectTimeout" value="${studio.social.mongodb.connection.connectTimeout}"/>-->
+        <!--<property name="writeConcern" value="${studio.social.mongodb.connection.writeConcern}"/>-->
+        <!--<property name="readPreference" value="${studio.social.mongodb.connection.readPreference}"/>-->
     <!--</bean>-->
 
 
     <!--<bean class="org.craftercms.commons.mongo.MongoClientFactory" id="social.mongoClient">-->
         <!--<property name="options" ref="social.mongodb.optionsFactory"/>-->
-        <!--<property name="connectionString" value="${social.mongodb.connection.connectionStr}"/>-->
+        <!--<property name="connectionString" value="${studio.social.mongodb.connection.connectionStr}"/>-->
     <!--</bean>-->
 
     <bean id="social.mongoClient" class="org.craftercms.commons.mongo.MongoClientFromUriFactoryBean">
-        <property name="uri" value="${social.mongodb.connection.newConnectionStr}"/>
+        <property name="uri" value="${studio.social.mongodb.connection.newConnectionStr}"/>
     </bean>
 
     <bean id="social.mongodb.jongoFactory" class="org.craftercms.commons.mongo.JongoFactoryBean">
         <property name="mongo" ref="social.mongoClient"/>
-        <property name="username" value="${social.mongodb.connection.dbUser}"/>
-        <property name="password" value="${social.mongodb.connection.dbPassword}"/>
-        <property name="dbName" value="${social.mongodb.connection.db}"/>
+        <property name="username" value="${studio.social.mongodb.connection.dbUser}"/>
+        <property name="password" value="${studio.social.mongodb.connection.dbPassword}"/>
+        <property name="dbName" value="${studio.social.mongodb.connection.db}"/>
     </bean>
 
     <bean id="crafter.mongoInitScriptRunner" class="org.craftercms.commons.mongo.MongoScriptRunner">
         <property name="mongo" ref="social.mongoClient"/>
-        <property name="dbName" value="${social.mongodb.connection.db}"/>
-        <property name="username" value="${social.mongodb.connection.dbUser}"/>
-        <property name="password" value="${social.mongodb.connection.dbPassword}"/>
-        <property name="runOnInit" value="${social.mongodb.scripts.runOnInit}"/>
-        <property name="scriptPaths" value="${social.mongodb.scripts.paths}"/>
-        <property name="useMongoClient" value="${social.mongodb.connection.scriptRunner.withClient}"/>
-        <property name="connectionStr" value="${social.mongodb.connection.newConnectionStr}"/>
-        <property name="mongoClientBin" value="${social.mongodb.connection.scriptRunner.clientPath}"/>
+        <property name="dbName" value="${studio.social.mongodb.connection.db}"/>
+        <property name="username" value="${studio.social.mongodb.connection.dbUser}"/>
+        <property name="password" value="${studio.social.mongodb.connection.dbPassword}"/>
+        <property name="runOnInit" value="${studio.social.mongodb.scripts.runOnInit}"/>
+        <property name="scriptPaths" value="${studio.social.mongodb.scripts.paths}"/>
+        <property name="useMongoClient" value="${studio.social.mongodb.connection.scriptRunner.withClient}"/>
+        <property name="connectionStr" value="${studio.social.mongodb.connection.newConnectionStr}"/>
+        <property name="mongoClientBin" value="${studio.social.mongodb.connection.scriptRunner.clientPath}"/>
     </bean>
 
 
