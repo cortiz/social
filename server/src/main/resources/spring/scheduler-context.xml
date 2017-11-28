@@ -41,23 +41,23 @@
 
     <bean id="social.notification.dailyTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="social.notification.dailyJobDetail"/>
-        <property name="cronExpression" value="${social.notification.dailyCron}"/>
+        <property name="cronExpression" value="${studio.social.notification.dailyCron}"/>
     </bean>
     <bean id="social.notification.weeklyTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="social.notification.weeklyJobDetail"/>
-        <property name="cronExpression" value="${social.notification.weeklyCron}"/>
+        <property name="cronExpression" value="${studio.social.notification.weeklyCron}"/>
     </bean>
 
     <bean id="social.notification.instantTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
         <property name="jobDetail" ref="social.notification.instantJobDetail"/>
-        <property name="repeatInterval" value="${social.notification.instantInterval}"/>
+        <property name="repeatInterval" value="${studio.social.notification.instantInterval}"/>
     </bean>
 
 
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="schedulerName" value="Social Notification harvester"/>
         <property name="autoStartup" value="true"/>
-        <property name="startupDelay" value="${social.notification.startDelay}"/>
+        <property name="startupDelay" value="${studio.social.notification.startDelay}"/>
         <property name="waitForJobsToCompleteOnShutdown" value="true"/>
         <property name="triggers">
             <list>

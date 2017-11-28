@@ -38,7 +38,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 public class GlobalDefaultExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
-    @Value("${social.web.system.throwStacktrace}")
+    @Value("${studio.social.web.system.throwStacktrace}")
     private boolean throwStacktrace;
     private ObjectWriter converter = new ObjectMapper().writer();
 
