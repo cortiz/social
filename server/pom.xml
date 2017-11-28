@@ -196,6 +196,12 @@
             <artifactId>jsoup</artifactId>
             <version>1.6.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>classmate</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -207,6 +213,7 @@
     </repositories>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <testResources>
             <testResource>
                 <directory>src/test/resources</directory>

@@ -8,9 +8,12 @@ import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = { WebMvcAutoConfiguration.class })
+@PropertySource("classpath:/crafter/api-documentation/api-documentation.properties")
 @ImportResource({"classpath:/spring/root-context.xml","classpath:/spring/web-context.xml"})
 public class SocialApplicationMain {
 

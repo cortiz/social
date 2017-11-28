@@ -34,7 +34,7 @@ social:
               contextPath:
               log:
                 dir: ${social.management.folderPath}/logs
-                name: social.log
+                name: social-admin.log
                 accesslog:
                         enable: false
 # Spring Boot Properties
