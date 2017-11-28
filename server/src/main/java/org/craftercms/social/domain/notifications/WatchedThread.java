@@ -18,6 +18,7 @@
 package org.craftercms.social.domain.notifications;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,14 +26,15 @@ import java.util.Set;
 import org.craftercms.commons.i10n.I10nLogger;
 import org.craftercms.commons.mongo.Document;
 import org.craftercms.social.util.LoggerFactory;
-import org.jongo.marshall.jackson.oid.Id;
+import org.jongo.marshall.jackson.oid.MongoId;
 
 /**
  *
  */
 @Document(collectionName = "watchList")
 public class WatchedThread {
-    @Id
+    @MongoId
+    @JsonProperty("_id")
     private String threadId;
     private Set<ProfileWatchOptions> watchers;
     @JsonIgnore

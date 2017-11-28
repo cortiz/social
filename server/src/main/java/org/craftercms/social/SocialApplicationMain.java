@@ -47,7 +47,8 @@ public class SocialApplicationMain {
             new ClassPathResource("resources/css/"),
             new ClassPathResource("resources/js/"),
             new ClassPathResource("resources/fonts/"),
-            new ClassPathResource("resources/image/")
+            new ClassPathResource("resources/image/"),
+            new ClassPathResource("/swagger-ui/")
         ));
         return resourceHttpRequestHandler;
     }
@@ -62,6 +63,7 @@ public class SocialApplicationMain {
         urlProperties.put("/js/**", resourceHttpRequestHandler);
         urlProperties.put("/fonts/**", resourceHttpRequestHandler);
         urlProperties.put("/image/**", resourceHttpRequestHandler);
+        urlProperties.put("/swagger-ui/**", resourceHttpRequestHandler);
         urlProperties.put("/**", urlFilenameViewController);
         mapping.setMappings(urlProperties);
         return mapping;

@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 
 
 /**
@@ -36,7 +37,7 @@ public class AttachmentsController<T extends SocialUgc> extends AbstractComments
 
     private Logger log = LoggerFactory.getLogger(AttachmentsController.class);
 
-    @Value("${social.web.mimeFile}")
+    @Value("${studio.social.web.mimeFile}")
     protected Resource mimeFile;
 
     @RequestMapping(value = "/{id}/attachments", method = RequestMethod.POST)

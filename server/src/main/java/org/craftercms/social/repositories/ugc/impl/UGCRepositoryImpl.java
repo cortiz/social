@@ -28,7 +28,6 @@ import org.craftercms.social.repositories.TreeUGC;
 import org.craftercms.social.repositories.ugc.UGCRepository;
 import org.craftercms.social.repositories.ugc.support.BaseTreeUgc;
 import org.craftercms.social.services.system.TenantConfigurationService;
-import org.craftercms.social.services.system.impl.TenantConfigurationServiceImpl;
 import org.jongo.Aggregate;
 import org.jongo.Find;
 import org.jongo.ResultHandler;
@@ -347,10 +346,6 @@ public class UGCRepositoryImpl<T extends UGC> extends SocialJongoRepository impl
             ugcList.add((T)a.getUGC());
         }
         return ugcList;
-    }
-
-    protected List<T> toUgcList(final Iterable<BaseTreeUgc> as) {
-        return toUgcList(IterableUtils.toList(as));
     }
 
 

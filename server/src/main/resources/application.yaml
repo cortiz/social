@@ -26,99 +26,98 @@ crafter:
             logout:
                 success:
                     url: /login?logout=true
-            urlsToExclude: /resources/**
-            urlsToInclude: /**
 
 # Crafter Social Server
 
-social:
+studio:
+    social:
 
-    folderPath: .
-    overrideLocation: file*:${social.folderPath}/social-services-context.xml
+      folderPath: .
+      overrideLocation: file*:${studio.social.folderPath}/social-services-context.xml
 
-    server:
-        port: 8667
-        contextPath:
-        log:
-          dir: ${social.folderPath}/logs
-          name: social.log
-          accesslog:
-                enable: false
+      server:
+          port: 8667
+          contextPath:
+          log:
+            dir: ${studio.social.folderPath}/logs
+            name: social.log
+            accesslog:
+                  enable: false
 
-    mongodb:
-        connection:
-            autoConnectRetry: true
-            connectTimeout: 1000
-            connectionStr: localhost:27017
-            connectionsPerHost: 200
-            db: craftersocial
-            dbPassword: ''
-            dbUser: ''
-            maxWaitTime: 1500
-            newConnectionStr: mongodb://localhost:27020/craftersocial?readPreference=primary&maxPoolSize=150&minPoolSize=50&maxIdleTimeMS=1000&waitQueueMultiple=200&waitQueueTimeoutMS=1000&w=1&journal=true
-            readPreference: 1
-            scriptRunner:
-                clientPath: /usr/local/bin/mongo
-                withClient: false
-            socketKeepAlive: true
-            threadsAllowedToBlockForConnectionMultiplier: 200
-            writeConcern: JOURNALED
-        scripts:
-            paths: classpath:/crafter/social/
-            runOnInit: true
-    notification:
-        dailyCron: 0 0 0 * * ?
-        disable: false
-        instantCron: 0 */2 * * * ?
-        instantInterval: 120000
-        startDelay: 60
-        weeklyCron: 0 0 0 ? * SUN
-    system:
-        cors:
-            accessControlAllowCredentials: false
-            accessControlAllowHeaders: x-requested-with
-            accessControlAllowMethods: POST, GET, PUT, DELETE
-            accessControlAllowOrigin: '*'
-            accessControlMaxAge: 3600
-            disableCORS: false
-        defaultLocale: EN
-        emailConfig:
-            cache:
-                maxElementsInMemory: 250
-                tti: 180000
-                ttl: 360000
-        ignoreAnonymousFlagRoles: SOCIAL_ADMIN,SOCIAL_SUPERADMIN,SOCIAL_MODERATOR
-        profileAgg:
-            attributesToReturn: displayName,avatarLink,socialContexts,notificationLocale,autoWatch,defaultFrequency,isAlwaysAnonymous
-            cache:
-                maxElementsInMemory: 250
-                tti: 1800
-                ttl: 3600
-        tenantConfig:
-            cache:
-                maxElementsInMemory: 250
-                tti: 180000
-        tentanConfig:
-            cache:
-                ttl: 360000
-    ugc:
-        arraySortFields: flags,votesDown,votesUp,attachments,ancestors
-        invalidQueryKeys: 'contextId:|$where:'
-        hiddenUgcStatus: SPAM,TRASH
-    web:
-        defaultSortOrder: ASC
-        mapping:
-            dateFormat: yyyy-MM-dd'T'HH:mm'Z'
-        maxUpload: 10485760
-        mimeFile: classpath:/mime.types
-        system:
-            throwStacktrace: false
+      mongodb:
+          connection:
+              autoConnectRetry: true
+              connectTimeout: 1000
+              connectionStr: localhost:27017
+              connectionsPerHost: 200
+              db: craftersocial
+              dbPassword: ''
+              dbUser: ''
+              maxWaitTime: 1500
+              newConnectionStr: mongodb://localhost:27020/craftersocial?readPreference=primary&maxPoolSize=150&minPoolSize=50&maxIdleTimeMS=1000&waitQueueMultiple=200&waitQueueTimeoutMS=1000&w=1&journal=true
+              readPreference: 1
+              scriptRunner:
+                  clientPath: /usr/local/bin/mongo
+                  withClient: false
+              socketKeepAlive: true
+              threadsAllowedToBlockForConnectionMultiplier: 200
+              writeConcern: JOURNALED
+          scripts:
+              paths: classpath:/crafter/social/
+              runOnInit: true
+      notification:
+          dailyCron: 0 0 0 * * ?
+          disable: false
+          instantCron: 0 */2 * * * ?
+          instantInterval: 120000
+          startDelay: 60
+          weeklyCron: 0 0 0 ? * SUN
+      system:
+          cors:
+              accessControlAllowCredentials: false
+              accessControlAllowHeaders: x-requested-with
+              accessControlAllowMethods: POST, GET, PUT, DELETE
+              accessControlAllowOrigin: '*'
+              accessControlMaxAge: 3600
+              disableCORS: false
+          defaultLocale: EN
+          emailConfig:
+              cache:
+                  maxElementsInMemory: 250
+                  tti: 180000
+                  ttl: 360000
+          ignoreAnonymousFlagRoles: SOCIAL_ADMIN,SOCIAL_SUPERADMIN,SOCIAL_MODERATOR
+          profileAgg:
+              attributesToReturn: displayName,avatarLink,socialContexts,notificationLocale,autoWatch,defaultFrequency,isAlwaysAnonymous
+              cache:
+                  maxElementsInMemory: 250
+                  tti: 1800
+                  ttl: 3600
+          tenantConfig:
+              cache:
+                  maxElementsInMemory: 250
+                  tti: 180000
+          tentanConfig:
+              cache:
+                  ttl: 360000
+      ugc:
+          arraySortFields: flags,votesDown,votesUp,attachments,ancestors
+          invalidQueryKeys: 'contextId:|$where:'
+          hiddenUgcStatus: SPAM,TRASH
+      web:
+          defaultSortOrder: ASC
+          mapping:
+              dateFormat: yyyy-MM-dd'T'HH:mm'Z'
+          maxUpload: 10485760
+          mimeFile: classpath:/mime.types
+          system:
+              throwStacktrace: false
 
-        # Crafter Social Admin Console
+      # Crafter Social Admin Console
 
-    management:
-        date-format: MM/dd/yyyy HH:mm:ss
-        overrideLocation: file*:${social.folderPath}/social-services-context.xml
+      management:
+          date-format: MM/dd/yyyy HH:mm:ss
+          overrideLocation: file*:${studio.social.folderPath}/social-services-context.xml
 
 org:
     craftercms:
@@ -127,14 +126,25 @@ org:
                 auditScytheCronExp: 0 0 0 * *  ?
                 maxAuditAllowedDays: 365
 
+swaggerSpringMvcPlugin:
+    includePatterns: /api/3/.*
+swagger:
+  apiTitle: Crafter Social
+  apiDescription: API Description
+  apiTermsOfServiceUrl: API terms of service
+  apiContactEmail: API Contact Email
+  apiLicenceType: API Licence Type
+  apiLicenceUrl: API License URL
+  enablePositionalOrdering: false
+
 # Spring Boot Properties
 
 server:
-  port: ${social.server.port}
-  context-path: ${social.server.contextPath}
+  port: ${studio.social.server.port}
+  context-path: ${studio.social.server.contextPath}
   undertow:
     accesslog:
-      enabled: ${social.server.log.accesslog.enable}
-      dir: ${social.server.log.dir}
+      enabled: ${studio.social.server.log.accesslog.enable}
+      dir: ${studio.social.server.log.dir}
 logging:
-  file: ${social.server.log.dir}/${social.server.log.name}
+  file: ${studio.social.server.log.dir}/${studio.social.server.log.name}

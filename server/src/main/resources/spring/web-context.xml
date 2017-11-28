@@ -80,7 +80,7 @@
                         <beans:property name="dateFormat">
                             <beans:bean class="java.text.SimpleDateFormat">
                                 <beans:constructor-arg type="java.lang.String"
-                                                       value="${social.web.mapping.dateFormat}"/>
+                                                       value="${studio.social.web.mapping.dateFormat}"/>
                             </beans:bean>
                         </beans:property>
                     </beans:bean>
@@ -107,7 +107,7 @@
 
     <beans:bean id="multipartResolver"
                 class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="${social.web.maxUpload}"/>
+        <beans:property name="maxUploadSize" value="${studio.social.web.maxUpload}"/>
     </beans:bean>
 
     <beans:import resource="classpath*:/crafter/api-documentation/api-documentation-context.xml"/>
@@ -147,7 +147,7 @@
         </beans:property>
         <beans:property name="dateFormat">
             <beans:bean class="java.text.SimpleDateFormat">
-                <beans:constructor-arg value="${social.management.date-format}"/>
+                <beans:constructor-arg value="${studio.social.management.date-format}"/>
             </beans:bean>
         </beans:property>
     </beans:bean>
