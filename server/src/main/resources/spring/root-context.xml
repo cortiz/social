@@ -25,23 +25,23 @@
     <bean class="org.craftercms.social.services.ugc.impl.UGCServiceImpl" id="social.ugc.ugcService">
         <property name="UGCRepositoryImpl" ref="social.repository.ugcRepository"/>
         <property name="pipeline" ref="social.services.pipeline"/>
-        <property name="invalidQueryKeys" value="${social.ugc.invalidQueryKeys}"/>
+        <property name="invalidQueryKeys" value="${studio.social.ugc.invalidQueryKeys}"/>
         <property name="socialUgcFactory" ref="social.ugc.factory"/>
         <property name="virusScanner" ref="social.ugc.virusScanner"/>
         <property name="reactor" ref="socialReactor"/>
         <property name="notificationServiceImpl" ref="social.services.system.notificationService"/>
-        <property name="arraySortFields" value="${social.ugc.arraySortFields}"/>
+        <property name="arraySortFields" value="${studio.social.ugc.arraySortFields}"/>
         <property name="tenantConfigurationService" ref="social.services.system.tenantConfiguration"/>
         <property name="profileService" ref="crafter.profileServiceRestClient"/>
     </bean>
 
     <bean class="org.craftercms.commons.web.CORSFilter" id="crafter.corsFilter">
-        <property name="allowHeaders" value="${social.system.cors.accessControlAllowHeaders}"/>
-        <property name="allowMethods" value="${social.system.cors.accessControlAllowMethods}" />
-        <property name="allowOrigins" value="${social.system.cors.accessControlAllowOrigin}"/>
-        <property name="maxAge" value="${social.system.cors.accessControlMaxAge}"/>
-        <property name="allowCredentials" value="${social.system.cors.accessControlAllowCredentials}"/>
-        <property name="disableCORS" value="${social.system.cors.disableCORS}"/>
+        <property name="allowHeaders" value="${studio.social.system.cors.accessControlAllowHeaders}"/>
+        <property name="allowMethods" value="${studio.social.system.cors.accessControlAllowMethods}" />
+        <property name="allowOrigins" value="${studio.social.system.cors.accessControlAllowOrigin}"/>
+        <property name="maxAge" value="${studio.social.system.cors.accessControlMaxAge}"/>
+        <property name="allowCredentials" value="${studio.social.system.cors.accessControlAllowCredentials}"/>
+        <property name="disableCORS" value="${studio.social.system.cors.disableCORS}"/>
     </bean>
 
     <bean id="social.ugc.virusScanner" class="org.craftercms.virusscanner.impl.NullVirusScannerImpl"/>
@@ -71,27 +71,27 @@
     <bean class="org.craftercms.social.util.profile.ProfileAggregatorImpl" id="social.profileAggregator">
         <property name="profileService" ref="crafter.profileServiceRestClient"/>
         <property name="cache" ref="crafter.ehCacheAuthenticationCache"/>
-        <property name="attributesToReturn" value="${social.system.profileAgg.attributesToReturn}"/>
+        <property name="attributesToReturn" value="${studio.social.system.profileAgg.attributesToReturn}"/>
     </bean>
 
     <bean id="social.support.ehCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
         <property name="name" value="social.profileAggregationCache"/>
-        <property name="timeToLiveSeconds" value="${social.system.profileAgg.cache.ttl}"/>
-        <property name="timeToIdleSeconds" value="${social.system.profileAgg.cache.tti}"/>
-        <property name="maxEntriesLocalHeap" value="${social.system.profileAgg.cache.maxElementsInMemory}"/>
+        <property name="timeToLiveSeconds" value="${studio.social.system.profileAgg.cache.ttl}"/>
+        <property name="timeToIdleSeconds" value="${studio.social.system.profileAgg.cache.tti}"/>
+        <property name="maxEntriesLocalHeap" value="${studio.social.system.profileAgg.cache.maxElementsInMemory}"/>
     </bean>
 
     <bean id="social.support.emailConfig" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
         <property name="name" value="social.profileAggregationCache"/>
-        <property name="timeToLiveSeconds" value="${social.system.emailConfig.cache.ttl}"/>
-        <property name="timeToIdleSeconds" value="${social.system.emailConfig.cache.tti}"/>
-        <property name="maxEntriesLocalHeap" value="${social.system.emailConfig.cache.maxElementsInMemory}"/>
+        <property name="timeToLiveSeconds" value="${studio.social.system.emailConfig.cache.ttl}"/>
+        <property name="timeToIdleSeconds" value="${studio.social.system.emailConfig.cache.tti}"/>
+        <property name="maxEntriesLocalHeap" value="${studio.social.system.emailConfig.cache.maxElementsInMemory}"/>
     </bean>
 
     <bean class="org.craftercms.social.util.serialization.SocialInjectValueFactory" id="social.InjectValueHandler">
         <property name="profileAggregator" ref="social.profileAggregator"/>
         <property name="notificationServiceImpl" ref="social.services.system.notificationService"/>
-        <property name="ignoreAnonymousFlagRoles" value="${social.system.ignoreAnonymousFlagRoles}"/>
+        <property name="ignoreAnonymousFlagRoles" value="${studio.social.system.ignoreAnonymousFlagRoles}"/>
     </bean>
 
     <bean class="org.craftercms.social.services.system.impl.SecurityActionsServiceImpl"
@@ -119,7 +119,7 @@
         <property name="instantTrigger" ref="social.notification.instantTrigger"/>
         <property name="profileAggregatorImpl" ref="social.profileAggregator"/>
         <property name="notificationDigestServiceImpl" ref="social.services.system.notificationDigestService"/>
-        <property name="disableNotifications" value="${social.notification.disable}"/>
+        <property name="disableNotifications" value="${studio.social.notification.disable}"/>
     </bean>
     <bean class="org.craftercms.social.services.notification.impl.NotificationDigestServiceImpl"
 
@@ -127,7 +127,7 @@
         <property name="profileAggregatorImpl" ref="social.profileAggregator"/>
         <property name="socialFreemarkerLoader" ref="social.util.email.notificationFreemarkerLoader" />
         <property name="emailService" ref="social.util.emailService"/>
-        <property name="systemDefaultLocale" value="${social.system.defaultLocale}"/>
+        <property name="systemDefaultLocale" value="${studio.social.system.defaultLocale}"/>
         <property name="modelExt" ref="social.notification.emailModelExt"/>
         <property name="preferencesService" ref="social.services.system.contextPreferences"/>
     </bean>
@@ -135,7 +135,7 @@
     <bean class="org.craftercms.social.services.system.impl.ContextPreferencesServiceImpl"
           id="social.services.system.contextPreferences">
         <property name="contextPreferencesRepository" ref="social.repository.contextPreferencesRepository"/>
-        <property name="invalidKeys" value="${social.ugc.invalidQueryKeys}"/>
+        <property name="invalidKeys" value="${studio.social.ugc.invalidQueryKeys}"/>
         <property name="tenantConfigurationServiceImpl" ref="social.services.system.tenantConfiguration"/>
         <property name="emailConfigCache" ref="social.support.emailConfig"/>
 
@@ -152,9 +152,9 @@
 
     <bean id="social.support.tenantConfigCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
         <property name="name" value="social.tenatConfigCache"/>
-        <property name="timeToLiveSeconds" value="${social.system.emailConfig.cache.ttl}"/>
-        <property name="timeToIdleSeconds" value="${social.system.emailConfig.cache.tti}"/>
-        <property name="maxEntriesLocalHeap" value="${social.system.emailConfig.cache.maxElementsInMemory}"/>
+        <property name="timeToLiveSeconds" value="${studio.social.system.emailConfig.cache.ttl}"/>
+        <property name="timeToIdleSeconds" value="${studio.social.system.emailConfig.cache.tti}"/>
+        <property name="maxEntriesLocalHeap" value="${studio.social.system.emailConfig.cache.maxElementsInMemory}"/>
     </bean>
 
 

@@ -1,5 +1,7 @@
 package org.craftercms.social.controllers.rest.v3.comments;
 
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 
 import org.craftercms.social.exceptions.SocialException;
 import org.craftercms.social.services.social.VoteOptions;
@@ -19,7 +21,9 @@ public class VotesControllerController<T> extends AbstractCommentsController {
 
     @RequestMapping(value = "{id}/votes/up", method = RequestMethod.POST)
     @ResponseBody
-    public T voteUp(@PathVariable(value = "id")  final String id) throws
+    @ApiOperation(value = "Votes Up a comment for the current logged user.",notes = "If a user already vote the " +
+        "current comment down, it will be remove before counting the vote up.")
+    public T voteUp(@PathVariable(value = "id") @ApiParam(value = "Ugc id to vote up") final String id) throws
         SocialException {
         String context = context();
         String userId = userId();
@@ -28,7 +32,9 @@ public class VotesControllerController<T> extends AbstractCommentsController {
 
     @RequestMapping(value = "{id}/votes/down", method = RequestMethod.POST)
          @ResponseBody
-         public T voteDown(@PathVariable(value = "id")  final String id) throws
+         @ApiOperation(value = "Votes Down a comment for the current logged user.",
+             notes = "If a user already vote up the comment it will remove the up before counting the vote down.")
+         public T voteDown(@PathVariable(value = "id") @ApiParam(value = "Ugc id to vote up") final String id) throws
         SocialException {
         String context = context();
         String userId = userId();
@@ -37,7 +43,8 @@ public class VotesControllerController<T> extends AbstractCommentsController {
 
     @RequestMapping(value = "{id}/votes/neutral", method = RequestMethod.POST)
     @ResponseBody
-    public T voteNeutral(@PathVariable(value = "id")  final String id)
+    @ApiOperation(value = "Votes Neutral (removes user vote for either up or down)")
+    public T voteNeutral(@PathVariable(value = "id") @ApiParam(value = "Ugc id to vote up") final String id)
         throws
         SocialException {
         String context = context();
